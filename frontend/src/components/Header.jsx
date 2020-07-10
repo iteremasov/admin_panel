@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import { withRouter } from "react-router-dom";
-import LoginDialog from './LoginDialog'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
 function HeaderComponent({ location }) {
   const classes = useStyles();
 
+  const logOut = () => {
+    localStorage.removeItem('token')
+    window.location.reload()
+  }
+
   return (
     <div className={ classes.root }>
       <AppBar position="static">
@@ -37,7 +41,12 @@ function HeaderComponent({ location }) {
             <Typography className={ classes.title } variant="h6" noWrap>
               Admin-panel
             </Typography>
-            <LoginDialog />
+            <Button
+            onClick={logOut}
+            >
+              Log Out
+            </ Button>
+
           </Toolbar>
         </Container>
       </AppBar>
