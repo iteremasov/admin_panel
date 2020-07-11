@@ -8,7 +8,8 @@ const sequelize = new Sequelize({
 const User = sequelize.define('User', {
     username: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
     password: {
         type: DataTypes.STRING,
@@ -33,7 +34,8 @@ const Article = sequelize.define('Article', {
 const Category = sequelize.define('Category', {
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
     parent_id: {
         type: DataTypes.STRING

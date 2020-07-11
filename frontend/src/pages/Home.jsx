@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 import Container from '@material-ui/core/Container';
-import {Header} from '../components/Header';
 import LoginPage from './Login';
+import Main from './Main'
 
 export default class Home extends Component {
 
   checkToken() {
     const token = localStorage.getItem('token')
-    if(!token) return false
+    if (!token) return false
     return true
   }
-	render() {
-		return (
+  render() {
+    return (
 
-			<div className="Home">
-                <Header />
-				<Container maxWidth="md">
+      <div className="Home">
+        <Container maxWidth="lg">
           {
-            this.checkToken()? (
-              <div>sfsd</div>
-            ):(
-              <LoginPage />
-            )
+            this.checkToken() ? (
+              <Main />
+            ) : (
+                <LoginPage />
+              )
           }
-				</Container>
-			</div>
-		);
-	}
+        </Container>
+      </div>
+    );
+  }
 }

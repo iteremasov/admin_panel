@@ -5,6 +5,9 @@ const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 const userControllers = require('./controllers/user');
 const userActions = require('./actions/user');
+const categoryControllers = require('./controllers/category');
+const articleControllers = require('./controllers/article');
+
 
 class Main {
   constructor(app) {
@@ -19,6 +22,8 @@ class Main {
       this.app.use(bodyParser.json());
       this.app.use(morgan('combined'));
       this.app.post('/login', userControllers.login);
+      this.app.get('/articles', articleControllers.articleList);
+      this.app.get('/categories', categoryControllers.categoryList);
       this.app.use((request, response, next) => {
         const tokenData = request.headers.authorization;
         const [pref, token] = tokenData ? tokenData.split(' ') : [];
@@ -38,7 +43,13 @@ class Main {
 
       this.app.get('/users', userControllers.userList);
       this.app.post('/users', userControllers.createUser);
-      this.app.delete('/users', userControllers.deleteUser)
+      this.app.delete('/users', userControllers.deleteUser);
+
+      this.app.post('/categories', categoryControllers.createCategory);
+
+      this.app.post('/articles', articleControllers.createArticle);
+      this.app.get('/articles/:id/image', articleControllers.imageById);
+
 
       callback();
     } catch (e) {

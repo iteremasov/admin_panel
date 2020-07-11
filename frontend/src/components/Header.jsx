@@ -30,7 +30,7 @@ function HeaderComponent({ location }) {
 
   const logOut = () => {
     localStorage.removeItem('token')
-    window.location.reload()
+    window.location.replace('/login')
   }
 
   return (

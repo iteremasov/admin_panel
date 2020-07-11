@@ -1,26 +1,28 @@
-export const fetchPost = async (url, body) => {
-	try {
+export const fetchPost = async ({ url, body = {}, headers = {} }) => {
+  try {
     return await fetch(url, {
       body: body,
       method: 'POST',
       headers: {
+        ...headers,
         'Content-Type': 'application/json',
       },
     });
-	} catch (error) {
-		return error;
-	}
+  } catch (error) {
+    return error;
+  }
 };
 
-export const fetchGet = async (url, body) => {
-	try {
+export const fetchGet = async ({ url, headers = {}, query = {} }) => {
+  try {
     return await fetch(url, {
       method: 'GET',
       headers: {
-
+        ...headers,
       },
     });
-	} catch (error) {
-		return error;
-	}
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
 };
