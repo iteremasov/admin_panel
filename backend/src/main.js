@@ -38,6 +38,7 @@ class Main {
 
       this.app.get('/users', userControllers.userList);
       this.app.post('/users', userControllers.createUser);
+      this.app.delete('/users', userControllers.deleteUser)
 
       callback();
     } catch (e) {

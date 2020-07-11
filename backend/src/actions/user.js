@@ -50,10 +50,15 @@ function getUserByID(id) {
   return User.findByPk(id)
 }
 
+function deleteUser({ username, password }) {
+  return User.destroy({ where: { username, password: hashPasswort(password) } })
+}
+
 module.exports = {
   createUser,
   getAuthToken,
   getUserBy,
   getUserByID,
   getUserList,
+  deleteUser,
 };
